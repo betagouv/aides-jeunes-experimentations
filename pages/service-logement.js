@@ -44,16 +44,28 @@ export default function Home() {
 
   return (
     <>
-      <p>
-        Ce site contient des pages et des logiques permettant des
-        expérimentations d’intégration du simulateur de 1jeune1solution
-        avec d’autres sites et services en ligne.
-      </p>
-      <p>
-        Le code source est disponibles sur GitHub : <a
-        href="https://github.com/betagouv/aides-jeunes-experimentations">
-        https://github.com/betagouv/aides-jeunes-experimentations</a>
-      </p>
+      <h1>Listing</h1>
+      <table>
+        <thead>
+          <tr>
+            <td>description</td>
+            <td>Code INSEE</td>
+            <td>loyer</td>
+            <td>aide</td>
+          </tr>
+        </thead>
+        <tbody>
+          {listing.map((item, idx) => {
+            return (
+              <tr key={idx} >
+                <td>{item.description}</td>
+                <td>{item.depcom}</td>
+                <td>{item.loyer}</td>
+                <td>{item.aide ? item.aide : <button onClick={e => handleClick(e, idx)}>Aide?</button>}</td>
+              </tr>)
+          })}
+        </tbody>
+      </table>
     </>
   )
 }
