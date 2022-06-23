@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function Home() {
+export default function ServiceLogement() {
   const [listing, setListing] = useState([{
     description: "Super logement",
     loyer: 450,
