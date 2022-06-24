@@ -1,26 +1,14 @@
 import { useEffect, useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 
+import data from './demo.json'
+
 export default function Preremplissage() {
-  const [data, setData] = useState()
   const [simulation, setSimulation] = useState()
 
   const handleClick = (e) => {
     let url = "https://mes-aides.1jeune1solution.beta.gouv.fr/api/simulation"
     url = "http://localhost:8080/api/simulation"
-    const data = {
-      dateDeValeur: new Date(),
-      answers: {
-        all: [{
-            "entityName": "individu",
-            "fieldName": "date_naissance",
-            "id": "demandeur",
-            "value": "2000-12-11T23:00:00.000Z"
-        }],
-        current: []
-      },
-      version: 11,
-    }
     fetch(url, {
       method: "POST",
       body: JSON.stringify(data),
@@ -45,12 +33,12 @@ export default function Preremplissage() {
   return (
     <>
       <button onClick={handleClick}>GO</button>
-      <pre>{JSON.stringify(simulation, null, 2)}</pre>
       <div>
         { simulation && (
           <a target="_blank" rel="noreferrer" href={`http://localhost:8080/api/simulation/${simulation._id}/redirect?token=${simulation.token}`}>Lien</a>
           ) }
       </div>
+      <pre>{JSON.stringify(simulation, null, 2)}</pre>
 
       <div>
       </div>
