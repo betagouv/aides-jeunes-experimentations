@@ -10,6 +10,7 @@
     "export": "npm run build && next export"
   },
   "dependencies": {
+    "iframe-resizer": "^4.3.2",
     "isomorphic-unfetch": "^3.1.0",
     "next": "12.1.6",
     "react": "18.2.0",

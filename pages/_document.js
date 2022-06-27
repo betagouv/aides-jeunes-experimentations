@@ -11,6 +11,7 @@ export default function Document() {
           <h1>Site d’expérimentations de Aides Jeunes</h1>
           <h3><Link href="/service-logement"><a>Service Logement</a></Link></h3>
           <h3><Link href="/preremplissage"><a>Préremplissage</a></Link></h3>
+          <h3><Link href="/iframe"><a>Intégration iFrame</a></Link></h3>
         </header>
         <main>
           <Main />
