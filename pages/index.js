@@ -8,11 +8,6 @@ export default function Home() {
         expérimentations d’intégration du simulateur de 1jeune1solution
         avec d’autres sites et services en ligne.
       </p>
-      <p>
-        Le code source est disponibles sur GitHub : <a
-        href="https://github.com/betagouv/aides-jeunes-experimentations">
-        https://github.com/betagouv/aides-jeunes-experimentations</a>
-      </p>
     </>
   )
 }

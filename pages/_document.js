@@ -17,6 +17,13 @@ export default function Document() {
           <Main />
           <NextScript />
         </main>
+        <footer>
+          <p>
+            Le code source est disponibles sur GitHub : <a
+            href="https://github.com/betagouv/aides-jeunes-experimentations">
+            https://github.com/betagouv/aides-jeunes-experimentations</a>
+          </p>
+        </footer>
       </body>
     </Html>
   )
