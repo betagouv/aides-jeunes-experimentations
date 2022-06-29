@@ -1,35 +1,9 @@
 import { useEffect, useState } from 'react';
 
+import logements from './logements.json'
+
 export default function ServiceLogement() {
-  const [listing, setListing] = useState([{
-    description: "Super logement",
-    loyer: 450,
-    statut_occupation_logement: "locataire_vide",
-    coloc: false,
-    logement_chambre: false,
-    depcom: 75016,
-  },{
-    description: "Super chambre",
-    loyer: 200,
-    statut_occupation_logement: "locataire_meuble",
-    coloc: false,
-    logement_chambre: true,
-    depcom: 75016,
-  },{
-    description: "Super coloc",
-    loyer: 300,
-    statut_occupation_logement: "locataire_vide",
-    coloc: true,
-    logement_chambre: false,
-    depcom: 75016,
-  },{
-    description: "Super studio",
-    loyer: 350,
-    statut_occupation_logement: "locataire_vide",
-    coloc: false,
-    logement_chambre: false,
-    depcom: 75016,
-  }])
+  const [listing, setListing] = useState(logements)
 
   const handleClick = (e, idx) => {
     const item = listing[idx]
