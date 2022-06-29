@@ -8,7 +8,7 @@ export default function Document() {
       <title>Site d’expérimentations de Aides Jeunes</title>
       <body>
         <header>
-          <h1>Site d’expérimentations de Aides Jeunes</h1>
+          <h1><Link href="/"><a>Site d’expérimentations de Aides Jeunes</a></Link></h1>
           <h3><Link href="/service-logement"><a>Service Logement</a></Link></h3>
           <h3><Link href="/preremplissage"><a>Préremplissage</a></Link></h3>
           <h3><Link href="/iframe"><a>Intégration iFrame</a></Link></h3>
