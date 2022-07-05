@@ -5,7 +5,7 @@
     "statut_occupation_logement": "locataire_vide",
     "coloc": false,
     "logement_chambre": false,
-    "depcom": 75016
+    "depcom": "75056"
   },
   {
     "description": "Super chambre",
@@ -13,7 +13,7 @@
     "statut_occupation_logement": "locataire_meuble",
     "coloc": false,
     "logement_chambre": true,
-    "depcom": 75016
+    "depcom": "75056"
   },
   {
     "description": "Super coloc",
@@ -21,7 +21,7 @@
     "statut_occupation_logement": "locataire_vide",
     "coloc": true,
     "logement_chambre": false,
-    "depcom": 75016
+    "depcom": "75056"
   },
   {
     "description": "Super studio",
@@ -29,6 +29,6 @@
     "statut_occupation_logement": "locataire_vide",
     "coloc": false,
     "logement_chambre": false,
-    "depcom": 75016
+    "depcom": "75056"
   }
 ]

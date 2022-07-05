@@ -11,7 +11,8 @@ export default function Resultats() {
   useEffect(() => {
       if (isReady) {
         const { token } = query
-        const url = `http://localhost:8080/api/simulation/via/${token}`
+
+        const url = `${process.env.NEXT_PUBLIC_MESAIDES_URL}/api/simulation/via/${token}`
         fetch(url).then(response => response.json())
           .then(data => {
             setData(data)

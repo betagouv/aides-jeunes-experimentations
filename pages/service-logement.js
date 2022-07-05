@@ -1,20 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 import logements from './logements.json'
 
 export default function ServiceLogement() {
+  const router = useRouter()
+  const { query, isReady } = router
+
   const [listing, setListing] = useState(logements)
+  const [token, setToken] = useState()
 
   const handleClick = (e, idx) => {
     const item = listing[idx]
-    console.log(listing, idx, listing[idx])
-    item.count = (item.count || 0) + 1
-    if (item.count >= 2) {
-      item.aide = 42
-    }
-    setListing([...listing])
+
+    const props = ["loyer", "statut_occupation_logement", "coloc", "logement_chambre", "depcom"]
+    let propsData = [
+      props.map(p => `_[]=${p}`).join('&'),
+      props.map(p => {
+        return [logements[idx]].map(l => `${p}[]=${l[p]}`).join('&')
+      }).join('&')
+    ].join('&')
+
+    const url = `${process.env.NEXT_PUBLIC_MESAIDES_URL}/api/simulation/via/${token}?${propsData}`
+    fetch(url).then(r => r.json())
+      .then(d => {
+        item.aide = d
+        setListing([...listing])
+      })
   }
 
+  useEffect(() => {
+      if (isReady) {
+        const { token } = query
+        setToken(token)
+      }
+  }, [isReady, query])
 
   return (
     <>
@@ -35,7 +55,9 @@ export default function ServiceLogement() {
                 <td>{item.description}</td>
                 <td>{item.depcom}</td>
                 <td>{item.loyer}</td>
-                <td>{item.aide ? item.aide : <button onClick={e => handleClick(e, idx)}>Aide?</button>}</td>
+                <td>{token ? (item.aide ? item.aide : <button onClick={e => handleClick(e, idx)}>Aide?</button>) : (
+                    <a href>Faites une simulation</a>
+                  )}</td>
               </tr>)
           })}
         </tbody>
