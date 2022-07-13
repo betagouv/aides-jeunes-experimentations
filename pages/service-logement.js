@@ -24,7 +24,12 @@ export default function ServiceLogement() {
     const url = `${process.env.NEXT_PUBLIC_MESAIDES_URL}/api/simulation/via/${token}?${propsData}`
     fetch(url).then(r => r.json())
       .then(d => {
-        item.aide = d
+        if (d.error) {
+          item.error = d.error
+          console.log(error)
+          alert(d.error)
+        }
+        item.aide = d.value
         setListing([...listing])
       })
   }

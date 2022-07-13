@@ -51,8 +51,10 @@ export default function Preremplissage() {
         directement renvoyées vers le site associé au téléservice indiqué (ici <code>{`${teleserviceName}`}</code>).
       </p>
       <div><button onClick={() => handleClick()}>GO</button></div>
-      <div><button onClick={() => handleClick("aides_jeunes_preremplissage")}>GO avec redirection expérimentale</button></div>
-      <div><button onClick={() => handleClick("aides_jeunes_service_logement")}>GO avec redirection service logement</button></div>
+      <div><button onClick={() => handleClick("aides_jeunes_preremplissage_dev")}>GO avec redirection expérimentale (local)</button></div>
+      <div><button onClick={() => handleClick("aides_jeunes_service_logement_dev")}>GO avec redirection service logement (local)</button></div>
+      <div><button onClick={() => handleClick("aides_jeunes_preremplissage")}>GO avec redirection expérimentale (en ligne)</button></div>
+      <div><button onClick={() => handleClick("aides_jeunes_service_logement")}>GO avec redirection service logement (en ligne)</button></div>
       <div>
         { simulation && (
           <>
