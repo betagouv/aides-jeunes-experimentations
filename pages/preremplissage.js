@@ -30,11 +30,11 @@ export default function Preremplissage() {
 
   function generateRedirectURL(location) {
     const to = location ? `&to=${location}` : ''
-    return `http://localhost:8080/api/simulation/${simulation._id}/redirect?token=${simulation.token}${to}`
+    return `${process.env.NEXT_PUBLIC_MESAIDES_URL}/api/simulation/${simulation._id}/redirect?token=${simulation.token}${to}`
   }
 
-  const handleLogementClick = () => {
-    let url = `${process.env.NEXT_PUBLIC_MESAIDES_URL}/api/simulation/${simulation._id}/aides_jeunes_service_logement${process.env.NEXT_PUBLIC_TELESERVICE_SUFFIX}/?token=${simulation.token}`
+  const handleRedirectionLinkClick = () => {
+    let url = `${process.env.NEXT_PUBLIC_MESAIDES_URL}/api/simulation/${simulation._id}/${simulation.teleservice}/?token=${simulation.token}`
     fetch(url).then(function(response) {
       return response.json()
     }).then(d => {
@@ -46,35 +46,35 @@ export default function Preremplissage() {
 
   return (
     <>
-      <p>Les boutons permettent la génération de simulations à partir de données externes. 
-        Avec la redirection, la page de résultats n’est pas affichée. Les personnes sont 
-        directement renvoyées vers le site associé au téléservice indiqué (ici <code>{`${teleserviceName}`}</code>).
-      </p>
-      <div><button onClick={() => handleClick()}>GO</button></div>
-      <div><button onClick={() => handleClick("aides_jeunes_preremplissage_dev")}>GO avec redirection expérimentale (local)</button></div>
-      <div><button onClick={() => handleClick("aides_jeunes_service_logement_dev")}>GO avec redirection service logement (local)</button></div>
-      <div><button onClick={() => handleClick("aides_jeunes_preremplissage")}>GO avec redirection expérimentale (en ligne)</button></div>
-      <div><button onClick={() => handleClick("aides_jeunes_service_logement")}>GO avec redirection service logement (en ligne)</button></div>
-      <div>
-        { simulation && (
-          <>
-            { teleserviceData ? (
-                <>
-                  <div><a target="_blank" rel="noreferrer" href={teleserviceData.destination.url}>Lien direct vers la page logement</a></div>
-                  <pre>{JSON.stringify(teleserviceData, null, 2)}</pre>
-                </>
+      <fieldset>
+        <legend>Génération de simulations</legend>
+        <p>Les boutons permettent la génération de simulations à partir de données externes.
+          Avec la redirection, la page de résultats n’est pas affichée. Les personnes sont
+          directement renvoyées vers le site associé au téléservice indiqué.
+        </p>
+        <div><button onClick={() => handleClick()}>GO sans redirection</button></div>
+        <div><button onClick={() => handleClick("aides_jeunes_preremplissage_dev")}>Enregistrer une simulation avec redirection expérimentale (local)</button></div>
+        <div><button onClick={() => handleClick("aides_jeunes_service_logement_dev")}>Enregistrer une simulation avec redirection service logement (local)</button></div>
+        <div><button onClick={() => handleClick("aides_jeunes_preremplissage")}>Enregistrer une simulation avec redirection expérimentale (en ligne)</button></div>
+        <div><button onClick={() => handleClick("aides_jeunes_service_logement")}>Enregistrer une simulation avec redirection service logement (en ligne)</button></div>
+      </fieldset>
+      { simulation && (
+        <fieldset>
+          <legend>Redirection</legend>
+          <div><a target="_blank" rel="noreferrer" href={generateRedirectURL()}>Lien vers le début de simulation</a></div>
+          <div><a target="_blank" rel="noreferrer" href={generateRedirectURL('/resultats')}>Lien la page de résultats</a></div>
+          { simulation.teleservice && (teleserviceData ? (
+              <>
+                <div><a target="_blank" rel="noreferrer" href={teleserviceData.destination.url}>Lien direct vers la page de redirection</a></div>
+                <pre>{JSON.stringify(teleserviceData, null, 2)}</pre>
+              </>
               ) : (
-              <div><button onClick={() => handleLogementClick()}>Génère le lien direct vers la page de logement</button></div>
+              <div><button onClick={() => handleRedirectionLinkClick()}>Générer le lien direct vers la page de redirection</button></div>
               )
-            }
-            <div><a target="_blank" rel="noreferrer" href={generateRedirectURL()}>Lien début</a></div>
-            <div><a target="_blank" rel="noreferrer" href={generateRedirectURL('/resultats')}>Lien page de résultats</a></div>
-
-
-
-          </>
-          ) }
-      </div>
+            )
+          }
+        </fieldset>
+      ) }
       <pre>{JSON.stringify(simulation, null, 2)}</pre>
 
       <div>
