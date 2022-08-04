@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
+import { generateRedirectURL } from '../lib'
+
+import data from './demo.json'
 import logements from './logements.json'
 
 export default function ServiceLogement() {
@@ -10,7 +13,7 @@ export default function ServiceLogement() {
   const [listing, setListing] = useState(logements)
   const [token, setToken] = useState()
 
-  const handleClick = (e, idx) => {
+  const handleClickCompute = (e, idx) => {
     const item = listing[idx]
 
     const props = ["loyer", "statut_occupation_logement", "coloc", "logement_chambre", "depcom"]
@@ -32,6 +35,26 @@ export default function ServiceLogement() {
         item.aide = d.value
         setListing([...listing])
       })
+  }
+
+  const handleClickIllustrate = (teleservice) => {
+    let url = `${process.env.NEXT_PUBLIC_MESAIDES_URL}/api/simulation`
+    const body = {...data, ...(teleservice ? { teleservice } : {})}
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json"
+      },
+    }).then((response) => response.json())
+    .then(simulation => generateRedirectURL(simulation, '/resultats'))
+    .then(url => {
+       document.location.href = url
+    })
+    .catch(function(error) {
+      console.error(error)
+    })
+
   }
 
   useEffect(() => {
@@ -60,13 +83,21 @@ export default function ServiceLogement() {
                 <td>{item.description}</td>
                 <td>{item.depcom}</td>
                 <td>{item.loyer}</td>
-                <td>{token ? (item.aide ? item.aide : <button onClick={e => handleClick(e, idx)}>Aide?</button>) : (
-                    <a href>Faites une simulation</a>
+                <td>{token ? (item.aide ? item.aide : <button onClick={e => handleClickCompute(e, idx)}>Aide?</button>) : (
+                    <a>Faites une simulation</a>
                   )}</td>
               </tr>)
           })}
         </tbody>
       </table>
+      <div>
+        <h1>Illustration</h1>
+        <p>L’idée est de proposer aux personnes répondre aux questions du simulateur puis d’être redirigées automatiquement (ou pas)
+        vers la page d’origine (ici) avec un token qui leur permettent d’évaluer des aides au logement dans différents scénarios.</p>
+        <p>Dans un premier temps, on propose, pour démonstration, un préremplissage intégral du simulateur et une redirection automatique par ici.</p>
+        <p><button onClick={() => handleClickIllustrate("aides_jeunes_service_logement")}>Simuler une boucle (en ligne)</button></p>
+        <p><button onClick={() => handleClickIllustrate("aides_jeunes_service_logement_dev")}>Simuler une boucle (dev)</button></p>
+      </div>
     </>
   )
 }

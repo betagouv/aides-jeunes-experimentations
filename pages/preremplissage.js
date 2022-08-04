@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 
+import { generateRedirectURL } from '../lib'
+
 import data from './demo.json'
-import logements from './logements.json'
 
 export default function Preremplissage() {
   const [simulation, setSimulation] = useState()
   const [teleserviceData, setTeleserviceData] = useState()
-  const teleserviceName = `aides_jeunes_preremplissage${process.env.NEXT_PUBLIC_TELESERVICE_SUFFIX}`
 
   const handleClick = (teleservice) => {
     let url = `${process.env.NEXT_PUBLIC_MESAIDES_URL}/api/simulation`
@@ -21,16 +21,11 @@ export default function Preremplissage() {
       },
     }).then(function(response) {
       return response.json()
-    }).then(d => {
-      setSimulation(d)
+    }).then(simulation => {
+      setSimulation(simulation)
     }).catch(function(error) {
       console.error(error)
     })
-  }
-
-  function generateRedirectURL(location) {
-    const to = location ? `&to=${location}` : ''
-    return `${process.env.NEXT_PUBLIC_MESAIDES_URL}/api/simulation/${simulation._id}/redirect?token=${simulation.token}${to}`
   }
 
   const handleRedirectionLinkClick = () => {
@@ -61,8 +56,8 @@ export default function Preremplissage() {
       { simulation && (
         <fieldset>
           <legend>Redirection</legend>
-          <div><a target="_blank" rel="noreferrer" href={generateRedirectURL()}>Lien vers le début de simulation</a></div>
-          <div><a target="_blank" rel="noreferrer" href={generateRedirectURL('/resultats')}>Lien la page de résultats</a></div>
+          <div><a target="_blank" rel="noreferrer" href={generateRedirectURL(simulation)}>Lien vers le début de simulation</a></div>
+          <div><a target="_blank" rel="noreferrer" href={generateRedirectURL(simulation, '/resultats')}>Lien la page de résultats</a></div>
           { simulation.teleservice && (teleserviceData ? (
               <>
                 <div><a target="_blank" rel="noreferrer" href={teleserviceData.destination.url}>Lien direct vers la page de redirection</a></div>
