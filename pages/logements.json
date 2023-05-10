@@ -2,7 +2,8 @@
   {
     "description": "Super logement",
     "loyer": 450,
-    "statut_occupation_logement": "locataire_vide",
+    "_logementType": "locataire",
+    "_locationType": "vide",
     "coloc": false,
     "logement_chambre": false,
     "depcom": "75056"
@@ -10,7 +11,8 @@
   {
     "description": "Super chambre",
     "loyer": 200,
-    "statut_occupation_logement": "locataire_meuble",
+    "_logementType": "locataire",
+    "_locationType": "meuble",
     "coloc": false,
     "logement_chambre": true,
     "depcom": "75056"
@@ -18,7 +20,8 @@
   {
     "description": "Super coloc",
     "loyer": 300,
-    "statut_occupation_logement": "locataire_vide",
+    "_logementType": "locataire",
+    "_locationType": "vide",
     "coloc": true,
     "logement_chambre": false,
     "depcom": "75056"
@@ -26,7 +29,8 @@
   {
     "description": "Super studio",
     "loyer": 350,
-    "statut_occupation_logement": "locataire_vide",
+    "_logementType": "locataire",
+    "_locationType": "vide",
     "coloc": false,
     "logement_chambre": false,
     "depcom": "75056"
