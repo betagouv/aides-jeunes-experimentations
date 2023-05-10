@@ -71,8 +71,13 @@
             },
             {
                 "entityName": "menage",
-                "fieldName": "statut_occupation_logement",
-                "value": "locataire_vide"
+                "fieldName": "_logementType",
+                "value": "locataire"
+            },
+            {
+                "entityName": "menage",
+                "fieldName": "_locationType",
+                "value": "vide"
             },
             {
                 "entityName": "menage",
@@ -244,8 +249,13 @@
             },
             {
                 "entityName": "menage",
-                "fieldName": "statut_occupation_logement",
-                "value": "locataire_vide"
+                "fieldName": "_logementType",
+                "value": "locataire"
+            },
+            {
+                "entityName": "menage",
+                "fieldName": "_locationType",
+                "value": "vide"
             },
             {
                 "entityName": "menage",

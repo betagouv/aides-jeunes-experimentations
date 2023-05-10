@@ -16,7 +16,7 @@ export default function ServiceLogement() {
   const handleClickCompute = (e, idx) => {
     const item = listing[idx]
 
-    const props = ["loyer", "statut_occupation_logement", "coloc", "logement_chambre", "depcom"]
+    const props = ["loyer", "_logementType", "_locationType", "coloc", "logement_chambre", "depcom"]
     let propsData = [
       props.map(p => `_[]=${p}`).join('&'),
       props.map(p => {
@@ -29,7 +29,7 @@ export default function ServiceLogement() {
       .then(d => {
         if (d.error) {
           item.error = d.error
-          console.log(error)
+          console.log(d.error)
           alert(d.error)
         }
         item.aide = d.value
