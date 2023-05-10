@@ -29,7 +29,7 @@ export default function ServiceLogement() {
       .then(d => {
         if (d.error) {
           item.error = d.error
-          console.log(error)
+          console.log(d.error)
           alert(d.error)
         }
         item.aide = d.value
