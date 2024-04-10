@@ -13,7 +13,7 @@
     "@zip.js/zip.js": "^2.6.40",
     "iframe-resizer": "^4.3.2",
     "isomorphic-unfetch": "^3.1.0",
-    "next": "12.1.6",
+    "next": "14.1.4",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
