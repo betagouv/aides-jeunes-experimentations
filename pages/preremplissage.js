@@ -1,31 +1,27 @@
-import { useEffect, useState } from 'react';
-import fetch from 'isomorphic-unfetch';
+import { useEffect, useState } from 'react'
+import { generateRedirectURL, fetchDemoSimulation } from '../lib'
 
-import { generateRedirectURL } from '../lib'
-
-import data from './demo.json'
 
 export default function Preremplissage() {
   const [simulation, setSimulation] = useState()
   const [teleserviceData, setTeleserviceData] = useState()
 
-  const handleClick = (teleservice) => {
+  const handleClick = async (teleservice) => {
     let url = `${process.env.NEXT_PUBLIC_MESAIDES_URL}/api/simulation`
-    const body = {...data, ...(teleservice ? { teleservice } : {})}
-    setTeleserviceData(undefined)
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json"
-      },
-    }).then(function(response) {
-      return response.json()
-    }).then(simulation => {
-      setSimulation(simulation)
-    }).catch(function(error) {
+    try {
+      const body = await fetchDemoSimulation(teleservice)
+      setTeleserviceData(undefined)
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json"
+        },
+      })
+      setSimulation(await response.json())
+    } catch(error) {
       console.error(error)
-    })
+    }
   }
 
   const handleRedirectionLinkClick = () => {

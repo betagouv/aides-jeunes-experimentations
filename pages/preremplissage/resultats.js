@@ -6,7 +6,7 @@ import fetch from 'isomorphic-unfetch'
 export default function Resultats() {
   const router = useRouter()
   const { query, isReady } = router
-  const [ data, setData ] = useState()
+  const [ data, setData ] = useState("Chargement…")
 
   useEffect(() => {
       if (isReady) {
@@ -21,12 +21,12 @@ export default function Resultats() {
   }, [isReady, query])
   return (
     <>
-      <h1>TODO</h1>
-      <pre>{JSON.stringify(false && data.droitsEligibles[0], null, 2)}</pre>
-      <div>{ data && data.droitsEligibles.map(benefit => {
-        return (<div key={benefit.id}>{benefit.label}</div>)
-      })}
-      </div>
+      <h1>Page de résultats</h1>
+      <p>Les aides suivantes sont affichées pour la simulation de démontrastion :</p>
+      <ul>{ (!data.droitsEligibles && data) || (data.droitsEligibles && data.droitsEligibles.map(benefit => {
+        return (<li key={benefit.id}>{benefit.label} : {benefit.montant} {benefit.unit}</li>)
+      }))}
+      </ul>
     </>
   )
 }

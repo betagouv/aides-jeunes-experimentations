@@ -1,7 +1,7 @@
 [
   {
     "description": "Super logement",
-    "loyer": 450,
+    "loyer": 600,
     "_logementType": "locataire",
     "_locationType": "vide",
     "coloc": false,
