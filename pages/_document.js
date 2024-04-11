@@ -23,6 +23,7 @@ export default function Document() {
             href="https://github.com/betagouv/aides-jeunes-experimentations">
             https://github.com/betagouv/aides-jeunes-experimentations</a>
           </p>
+          <p>Version : {process.env.commitSHA?.slice(0, 10)}</p>
         </footer>
       </body>
     </Html>
