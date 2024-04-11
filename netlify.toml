@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/*"
+  to = "https://betagouv.github.io/mes-aides-changent/:splat"
+  status = 200
