@@ -103,7 +103,7 @@ export default function ServiceLogement(props) {
         vers la page d’origine (ici) avec un token qui leur permettent d’évaluer des aides au logement dans différents scénarios.</p>
         <p>Dans un premier temps, on propose, pour démonstration, un préremplissage intégral du simulateur et une redirection automatique par ici.</p>
         <p><button onClick={() => handleClickIllustrate("aides_jeunes_service_logement")}>Simuler une boucle (en ligne)</button></p>
-        <p><button onClick={() => handleClickIllustrate("aides_jeunes_service_logement_dev")}>Simuler une boucle (dev)</button></p>
+        <p><button onClick={() => handleClickIllustrate("aides_jeunes_service_logement_dev")}>Simuler une boucle (local)</button></p>
       </div>
     </>
   )
