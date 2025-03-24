@@ -3,8 +3,8 @@ const isProduction = 'production' === process.env.NODE_ENV
 
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export',
-  assetPrefix: isProduction ? "/aides-jeunes-experimentations" : "",
+  output: 'standalone',
+  assetPrefix: isProduction ? "/aides-jeunes-experimentations" : undefined,
   basePath: isProduction ? "/aides-jeunes-experimentations" : "",
   env: {
     commitSHA: process.env.GITHUB_SHA || "local",

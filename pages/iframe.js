@@ -1,17 +1,14 @@
-import { useEffect } from 'react';
-import { iframeResize } from "iframe-resizer"
+import iframeResize from "@iframe-resizer/parent"
 
 export default function Home() {
-  useEffect(() => {
-    iframeResize({ log: false }, "#iframe")
-  }, [])
+
+    iframeResize({ log: false, license: "GPLv3", waitForLoad: true }, "#iframe")
 
   return (
     <>
       <iframe
         id="iframe"
         src="https://mes-aides.1jeune1solution.beta.gouv.fr?iframe"
-        scrolling="no"
       />
     </>
   )
