@@ -8,10 +8,10 @@ export default function Document() {
       <title>Site d’expérimentations de Aides Jeunes</title>
       <body>
         <header>
-          <h1><Link href="/"><a>Site d’expérimentations de Aides Jeunes</a></Link></h1>
-          <h3><Link href="/service-logement"><a>Service Logement</a></Link></h3>
-          <h3><Link href="/preremplissage"><a>Préremplissage</a></Link></h3>
-          <h3><Link href="/iframe"><a>Intégration iFrame</a></Link> - <Link href="/iframePreprod"><a>Intégration iFrame pré-production</a></Link></h3>
+          <h1><Link href="/">Site d’expérimentations de Aides Jeunes</Link></h1>
+          <h3><Link href="/service-logement">Service Logement</Link></h3>
+          <h3><Link href="/preremplissage">Préremplissage</Link></h3>
+          <h3><Link href="/iframe">Intégration iFrame</Link> - <Link href="/iframePreprod">Intégration iFrame pré-production</Link></h3>
         </header>
         <main>
           <Main />
@@ -19,9 +19,9 @@ export default function Document() {
         </main>
         <footer>
           <p>
-            Le code source est disponibles sur GitHub : <a
+            Le code source est disponibles sur GitHub : <Link
             href="https://github.com/betagouv/aides-jeunes-experimentations">
-            https://github.com/betagouv/aides-jeunes-experimentations</a>
+            https://github.com/betagouv/aides-jeunes-experimentations</Link>
           </p>
           <p>Version : {process.env.commitSHA?.slice(0, 10)}</p>
         </footer>

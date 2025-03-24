@@ -1,17 +1,13 @@
-import { useEffect } from 'react';
-import { iframeResize } from "iframe-resizer"
+import iframeResize from "@iframe-resizer/parent"
 
 export default function Home() {
-  useEffect(() => {
-    iframeResize({ log: false }, "#iframe")
-  }, [])
+    iframeResize({ log: false, license: "GPLv3", waitForLoad: true }, "#iframe")
 
   return (
     <>
       <iframe
         id="iframe"
         src="https://preprod.mes-aides.incubateur.net?iframe"
-        scrolling="no"
       />
     </>
   )

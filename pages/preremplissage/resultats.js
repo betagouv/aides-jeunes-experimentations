@@ -22,7 +22,7 @@ export default function Resultats() {
   return (
     <>
       <h1>Page de résultats</h1>
-      <p>Les aides suivantes sont affichées pour la simulation de démontrastion :</p>
+      <p>Les aides suivantes sont affichées pour la simulation de démonstration :</p>
       <ul>{ (!data.droitsEligibles && data) || (data.droitsEligibles && data.droitsEligibles.map(benefit => {
         return (<li key={benefit.id}>{benefit.label} : {benefit.montant} {benefit.unit}</li>)
       }))}
